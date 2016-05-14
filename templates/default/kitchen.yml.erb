@@ -1,0 +1,23 @@
+---
+driver:
+  name: vagrant
+  gui: true
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: true
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: server2012r2-vmware-20150912-122803
+    transport:
+      name: winrm
+      elevated: true
+
+suites:
+  - name: default
+    run_list:
+      - recipe[<%= cookbook_name %>::default]
+    attributes:
